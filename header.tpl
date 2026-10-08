@@ -11,12 +11,15 @@
     {$headoutput}
 
 </head>
-<body data-phone-cc-input="{$phoneNumberInputStyle}">
+<body class="dark" data-phone-cc-input="{$phoneNumberInputStyle}">
 {if $captcha}{$captcha->getMarkup()}{/if}
 {$headeroutput}
 
 <section id="header">
-    <div class="container">
+    <div class="container sidebar-container">
+        <button type="button" class="sidebar-toggle" aria-label="{lang key='toggleNav'}" onclick="document.body.classList.toggle('sidebar-collapsed')">
+            <i class="fas fa-bars"></i>
+        </button>
         <ul class="top-nav">
             {if $languagechangeenabled && count($locales) > 1}
                 <li>
@@ -133,6 +136,21 @@
     </nav>
 
 </section>
+
+<script>
+(function () {
+    function syncSidebarOffset() {
+        var header = document.querySelector('section#header > .container');
+        if (header) {
+            document.documentElement.style.setProperty('--sidebar-header-height', header.offsetHeight + 'px');
+        }
+    }
+    window.addEventListener('load', syncSidebarOffset);
+    window.addEventListener('resize', syncSidebarOffset);
+    if (document.readyState !== 'loading') { syncSidebarOffset(); }
+    else { document.addEventListener('DOMContentLoaded', syncSidebarOffset); }
+})();
+</script>
 
 {if $templatefile == 'homepage'}
     <section id="home-banner">

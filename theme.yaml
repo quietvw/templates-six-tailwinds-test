@@ -1,10 +1,12 @@
 # WHMCS Six Theme Configuration File
 
-name: "Six"
-description: "The Default Theme for WHMCS Version 6.0"
+name: "Six Dark (Tailwind)"
+description: "A dark Tailwind CSS / ShadCN styled version of the default WHMCS Six theme with a fixed sidebar layout"
 author: "WHMCS Limited"
 properties:
   serverSidePagination: false # Defines client side will handle pagination
+  darkMode: true
+  layout: sidebar
 provides:
   bootstrap: 3.4.1
   jquery: 1.12.4
